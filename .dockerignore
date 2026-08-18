@@ -1,0 +1,6 @@
+.git
+.gitignore
+.gitattributes
+config/OWNER_PASSWORD.txt
+*.log
+node_modules
