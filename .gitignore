@@ -1,0 +1,13 @@
+# Секреты и локальные файлы — НЕ коммитим
+config/OWNER_PASSWORD.txt
+
+# Системное
+*.log
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Редакторы
+.vscode/
+.idea/
+*.swp

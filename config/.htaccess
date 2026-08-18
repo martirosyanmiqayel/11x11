@@ -1,0 +1,4 @@
+# Запрет прямого доступа к конфигам и файлу с паролем владельца из браузера
+<FilesMatch "\.(php|txt|sql)$">
+    Require all denied
+</FilesMatch>
