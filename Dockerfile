@@ -8,6 +8,9 @@ RUN apt-get update \
  && a2enmod rewrite \
  && rm -rf /var/lib/apt/lists/*
 
+# Apache: оставить ровно один MPM (prefork нужен для mod_php)
+RUN a2dismod mpm_event mpm_worker 2>/dev/null; a2enmod mpm_prefork 2>/dev/null; true
+
 # Код приложения
 COPY . /var/www/html/
 RUN chown -R www-data:www-data /var/www/html
