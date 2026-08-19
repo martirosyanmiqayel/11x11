@@ -58,7 +58,7 @@ require __DIR__ . '/../includes/header.php';
 
 <?php if (!$posts): ?>
   <div class="glass rounded-2xl p-12 text-center text-slate-400">
-    <div class="text-5xl mb-3 opacity-40">📝</div>
+    <div class="mb-3 flex justify-center text-neon/40"><?= icon('doc', 'w-12 h-12') ?></div>
     <?= e(t('mp.empty')) ?> <a href="<?= base_url('posts/create.php') ?>" class="text-neon hover:underline"><?= e(t('mp.create_first')) ?></a>.
   </div>
 <?php else: ?>
@@ -81,7 +81,7 @@ require __DIR__ . '/../includes/header.php';
               <td class="px-5 py-3">
                 <a href="<?= base_url('post.php?id=' . $p['id']) ?>" class="font-semibold hover:text-neon"><?= e(post_field($p,'title')) ?></a>
                 <?php if ($p['status']==='rejected' && $p['reject_note']): ?>
-                  <div class="text-xs text-rose-300 mt-1">✋ <?= e($p['reject_note']) ?></div>
+                  <div class="text-xs text-rose-300 mt-1 inline-flex items-center gap-1.5"><?= icon('alert', 'w-3.5 h-3.5') ?><?= e($p['reject_note']) ?></div>
                 <?php endif; ?>
               </td>
               <?php if (has_role('admin','owner')): ?><td class="px-5 py-3 text-slate-300"><?= e($p['author_name']) ?></td><?php endif; ?>

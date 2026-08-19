@@ -79,10 +79,10 @@ $searchAttr = fn($p) => e(mb_strtolower($p['title'].' '.$p['title_en'].' '.$p['e
        class="feed-card group block glass glass-hover rounded-3xl overflow-hidden mb-8 transition"
        data-search="<?= $searchAttr($f) ?>">
       <div class="grid md:grid-cols-2">
-        <div class="relative h-56 md:h-full min-h-[16rem] bg-gradient-to-br from-pitch-700 to-pitch-900 grid place-items-center text-6xl overflow-hidden">
+        <div class="relative h-56 md:h-full min-h-[16rem] bg-gradient-to-br from-pitch-700 to-pitch-900 grid place-items-center text-neon/30 overflow-hidden">
           <?php if ($f['cover_url']): ?>
             <img src="<?= e($f['cover_url']) ?>" alt="" class="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition duration-500">
-          <?php else: ?>⚽<?php endif; ?>
+          <?php else: ?><?= icon('ball', 'w-16 h-16') ?><?php endif; ?>
         </div>
         <div class="p-6 sm:p-8 flex flex-col justify-center">
           <div class="flex items-center gap-2 mb-3 text-xs">
@@ -108,10 +108,10 @@ $searchAttr = fn($p) => e(mb_strtolower($p['title'].' '.$p['title_en'].' '.$p['e
       <a href="<?= base_url('post.php?id=' . $p['id']) ?>"
          class="feed-card group flex gap-4 glass glass-hover rounded-2xl p-3 transition"
          data-search="<?= $searchAttr($p) ?>">
-        <div class="relative h-24 w-32 sm:w-40 shrink-0 rounded-xl overflow-hidden bg-gradient-to-br from-pitch-700 to-pitch-900 grid place-items-center text-3xl">
+        <div class="relative h-24 w-32 sm:w-40 shrink-0 rounded-xl overflow-hidden bg-gradient-to-br from-pitch-700 to-pitch-900 grid place-items-center text-neon/30">
           <?php if ($p['cover_url']): ?>
             <img src="<?= e($p['cover_url']) ?>" alt="" class="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition duration-500">
-          <?php else: ?>⚽<?php endif; ?>
+          <?php else: ?><?= icon('ball', 'w-8 h-8') ?><?php endif; ?>
         </div>
         <div class="min-w-0 flex flex-col py-0.5">
           <div class="flex items-center gap-2 mb-1 text-[11px]">

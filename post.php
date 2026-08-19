@@ -56,7 +56,7 @@ require __DIR__ . '/includes/header.php';
   <div class="mt-4 flex items-center gap-3 text-sm text-slate-400 border-b border-white/10 pb-6">
     <span class="grid h-9 w-9 place-items-center rounded-full bg-neon text-pitch-900 font-bold"><?= e(mb_substr($post['author_name'],0,1)) ?></span>
     <span><?= e(t('post.author')) ?> <b class="text-slate-200"><?= e($post['author_name']) ?></b></span>
-    <span>· 👁 <?= (int)$post['views'] ?></span>
+    <span class="inline-flex items-center gap-1"><?= icon('eye', 'w-4 h-4') ?><?= (int)$post['views'] ?></span>
   </div>
 
   <?php if ($post['cover_url']): ?>
@@ -75,7 +75,7 @@ require __DIR__ . '/includes/header.php';
   <?php if ($canSeeDraft): ?>
     <div class="mt-10 pt-6 border-t border-white/10">
       <a href="<?= base_url('posts/edit.php?id=' . $post['id']) ?>"
-         class="inline-flex items-center gap-2 rounded-lg bg-white/5 hover:bg-white/10 px-4 py-2 text-sm transition"><?= e(t('post.edit')) ?></a>
+         class="inline-flex items-center gap-2 rounded-lg bg-white/5 hover:bg-white/10 px-4 py-2 text-sm transition"><?= icon('edit', 'w-4 h-4') ?><?= e(t('post.edit')) ?></a>
     </div>
   <?php endif; ?>
 </article>

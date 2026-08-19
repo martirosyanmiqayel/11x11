@@ -45,7 +45,7 @@ require __DIR__ . '/includes/header.php';
 
 <div class="flex items-center justify-between flex-wrap gap-4 mb-8">
   <div>
-    <h1 class="text-3xl font-extrabold"><?= e(t('trs.title')) ?></h1>
+    <h1 class="text-3xl font-extrabold inline-flex items-center gap-2"><span class="text-neon"><?= icon('swap', 'w-7 h-7') ?></span><?= e(t('trs.title')) ?></h1>
     <p class="text-slate-400 mt-1"><?= e(t('trs.sub')) ?></p>
   </div>
   <form method="get" class="relative">
@@ -110,7 +110,7 @@ require __DIR__ . '/includes/header.php';
                   <?= csrf_field() ?>
                   <input type="hidden" name="do" value="delete">
                   <input type="hidden" name="id" value="<?= $t['id'] ?>">
-                  <button class="rounded-lg bg-rose-500/15 text-rose-300 hover:bg-rose-500/25 px-3 py-1.5 transition">✕</button>
+                  <button class="rounded-lg bg-rose-500/15 text-rose-300 hover:bg-rose-500/25 px-3 py-1.5 transition inline-flex items-center"><?= icon('x', 'w-4 h-4') ?></button>
                 </form>
               </td>
             <?php endif; ?>

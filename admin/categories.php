@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $slug    = strtolower(trim($_POST['slug'] ?? ''));
         $name_ru = trim($_POST['name_ru'] ?? '');
         $name_en = trim($_POST['name_en'] ?? '');
-        $icon    = trim($_POST['icon'] ?? '⚽');
+        $icon    = trim($_POST['icon'] ?? '');
         $kw      = trim($_POST['keywords'] ?? '');
         $order   = (int)($_POST['sort_order'] ?? 0);
 
@@ -32,13 +32,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $notice = ['err', t('cats.slug_exists')];
                 } else {
                     db()->prepare("INSERT INTO categories (slug,name_ru,name_en,icon,keywords,sort_order) VALUES (?,?,?,?,?,?)")
-                        ->execute([$slug,$name_ru,$name_en,($icon ?: '⚽'),$kw,$order]);
+                        ->execute([$slug,$name_ru,$name_en,$icon,$kw,$order]);
                     $notice = ['ok', t('cats.created')];
                 }
             } else { // update по id (slug не меняем, чтобы не осиротить посты)
                 $id = (int)($_POST['id'] ?? 0);
                 db()->prepare("UPDATE categories SET name_ru=?,name_en=?,icon=?,keywords=?,sort_order=? WHERE id=?")
-                    ->execute([$name_ru,$name_en,($icon ?: '⚽'),$kw,$order,$id]);
+                    ->execute([$name_ru,$name_en,$icon,$kw,$order,$id]);
                 $notice = ['ok', t('cats.updated')];
             }
         }
@@ -58,7 +58,7 @@ $pageTitle = t('nav.categories') . ' — 11x11';
 require __DIR__ . '/../includes/header.php';
 ?>
 
-<h1 class="text-3xl font-extrabold mb-2"><?= e(t('cats.title')) ?></h1>
+<h1 class="text-3xl font-extrabold mb-2 inline-flex items-center gap-2"><span class="text-neon"><?= icon('tag', 'w-7 h-7') ?></span><?= e(t('cats.title')) ?></h1>
 <p class="text-slate-400 mb-8"><?= e(t('cats.sub')) ?></p>
 
 <?php if ($notice): ?>
@@ -75,15 +75,9 @@ require __DIR__ . '/../includes/header.php';
       <form method="post" class="space-y-3">
         <?= csrf_field() ?>
         <input type="hidden" name="do" value="create">
-        <div class="grid grid-cols-3 gap-3">
-          <div class="col-span-1">
-            <label class="block text-xs text-slate-400 mb-1"><?= e(t('cats.icon')) ?></label>
-            <input name="icon" value="⚽" maxlength="8" class="w-full text-center rounded-xl bg-pitch-900/60 border border-white/10 px-2 py-2.5 outline-none focus:border-neon">
-          </div>
-          <div class="col-span-2">
-            <label class="block text-xs text-slate-400 mb-1"><?= e(t('cats.slug')) ?></label>
-            <input name="slug" required placeholder="laliga" class="w-full rounded-xl bg-pitch-900/60 border border-white/10 px-3 py-2.5 outline-none focus:border-neon">
-          </div>
+        <div>
+          <label class="block text-xs text-slate-400 mb-1"><?= e(t('cats.slug')) ?></label>
+          <input name="slug" required placeholder="laliga" class="w-full rounded-xl bg-pitch-900/60 border border-white/10 px-3 py-2.5 outline-none focus:border-neon">
         </div>
         <div>
           <label class="block text-xs text-slate-400 mb-1"><?= e(t('cats.name_ru')) ?></label>
@@ -115,10 +109,7 @@ require __DIR__ . '/../includes/header.php';
         <?= csrf_field() ?>
         <input type="hidden" name="do" value="update">
         <input type="hidden" name="id" value="<?= (int)$r['id'] ?>">
-        <div class="w-14">
-          <label class="block text-[11px] text-slate-400 mb-1"><?= e(t('cats.icon')) ?></label>
-          <input name="icon" value="<?= e($r['icon']) ?>" maxlength="8" class="w-full text-center rounded-lg bg-pitch-900/60 border border-white/10 px-1 py-2 outline-none focus:border-neon">
-        </div>
+        <input type="hidden" name="icon" value="<?= e($r['icon']) ?>">
         <div class="flex-1 min-w-[120px]">
           <label class="block text-[11px] text-slate-400 mb-1"><?= e(t('cats.name_ru')) ?> <span class="text-slate-600">/ <?= e($r['slug']) ?></span></label>
           <input name="name_ru" value="<?= e($r['name_ru']) ?>" class="w-full rounded-lg bg-pitch-900/60 border border-white/10 px-3 py-2 outline-none focus:border-neon">

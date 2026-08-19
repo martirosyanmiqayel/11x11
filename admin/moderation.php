@@ -38,13 +38,13 @@ require __DIR__ . '/../includes/header.php';
 ?>
 
 <div class="flex items-center gap-3 mb-8">
-  <h1 class="text-3xl font-extrabold"><?= e(t('mod.title')) ?></h1>
+  <h1 class="text-3xl font-extrabold inline-flex items-center gap-2"><span class="text-neon"><?= icon('shield', 'w-7 h-7') ?></span><?= e(t('mod.title')) ?></h1>
   <span class="rounded-full bg-amber-500/20 text-amber-300 px-3 py-1 text-sm ring-1 ring-amber-400/30"><?= e(t('mod.queue', ['n' => count($pending)])) ?></span>
 </div>
 
 <?php if (!$pending): ?>
   <div class="glass rounded-2xl p-12 text-center text-slate-400">
-    <div class="text-5xl mb-3 opacity-40">✅</div>
+    <div class="mb-3 flex justify-center text-neon/40"><?= icon('check', 'w-12 h-12') ?></div>
     <?= e(t('mod.empty')) ?>
   </div>
 <?php else: ?>
@@ -58,10 +58,10 @@ require __DIR__ . '/../includes/header.php';
               <span class="text-xs text-slate-400"><?= date('d.m.Y H:i', strtotime($p['updated_at'])) ?></span>
             </div>
             <h2 class="text-xl font-bold"><?= e(post_field($p,'title')) ?></h2>
-            <p class="text-sm text-slate-400 mt-1">✍️ <?= e($p['author_name']) ?> · <?= e($p['author_email']) ?></p>
+            <p class="text-sm text-slate-400 mt-1 inline-flex items-center gap-1.5"><?= icon('users', 'w-3.5 h-3.5') ?><?= e($p['author_name']) ?> · <?= e($p['author_email']) ?></p>
             <p class="text-slate-300 mt-3 line-clamp-3"><?= e(post_field($p,'excerpt') ?: mb_substr(strip_tags(post_field($p,'body')),0,200).'…') ?></p>
             <a href="<?= base_url('post.php?id=' . $p['id']) ?>" target="_blank"
-               class="inline-block mt-3 text-sm text-neon hover:underline"><?= e(t('mod.preview')) ?></a>
+               class="inline-flex items-center gap-1 mt-3 text-sm text-neon hover:underline"><?= e(t('mod.preview')) ?><?= icon('external', 'w-3.5 h-3.5') ?></a>
           </div>
 
           <div class="flex flex-col gap-2 shrink-0 w-full sm:w-auto">
@@ -70,7 +70,7 @@ require __DIR__ . '/../includes/header.php';
               <?= csrf_field() ?>
               <input type="hidden" name="post_id" value="<?= $p['id'] ?>">
               <input type="hidden" name="do" value="approve">
-              <button class="w-full rounded-xl bg-neon text-pitch-900 font-semibold px-5 py-2.5 hover:bg-neon-400 shadow-glow transition"><?= e(t('mod.approve')) ?></button>
+              <button class="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-neon text-pitch-900 font-semibold px-5 py-2.5 hover:bg-neon-400 shadow-glow transition"><?= icon('check', 'w-4 h-4') ?><?= e(t('mod.approve')) ?></button>
             </form>
 
             <!-- Отклонить (с причиной) -->

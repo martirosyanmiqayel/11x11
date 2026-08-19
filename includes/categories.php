@@ -33,14 +33,13 @@ function category_label(string $slug): string
 /** Иконка категории (эмодзи). */
 function category_icon(string $slug): string
 {
-    return all_categories()[$slug]['icon'] ?? '⚽';
+    return all_categories()[$slug]['icon'] ?? '';
 }
 
-/** Подпись с иконкой: "🇪🇸 Ла Лига". */
+/** Подпись категории — только текст, без иконок/эмодзи. */
 function category_badge_text(string $slug): string
 {
-    $icon = category_icon($slug);
-    return trim($icon . ' ' . category_label($slug));
+    return category_label($slug);
 }
 
 /**

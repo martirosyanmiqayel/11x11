@@ -69,7 +69,7 @@ $pageTitle = t('nav.access') . ' — 11x11';
 require __DIR__ . '/../includes/header.php';
 ?>
 
-<h1 class="text-3xl font-extrabold mb-2"><?= e(t('usr.title')) ?></h1>
+<h1 class="text-3xl font-extrabold mb-2 inline-flex items-center gap-2"><span class="text-neon"><?= icon('users', 'w-7 h-7') ?></span><?= e(t('usr.title')) ?></h1>
 <p class="text-slate-400 mb-8"><?= e(t('usr.sub')) ?></p>
 
 <?php if ($notice): ?>

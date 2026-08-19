@@ -26,12 +26,12 @@ $val = fn(string $k, $d = '') => e($_POST[$k] ?? $d);
       <div>
         <label class="flex items-center gap-2 text-sm text-slate-300 mb-1">
           <?= e(t('form.category')) ?>
-          <span id="autoCatBadge" class="hidden text-[11px] rounded-full bg-neon/15 text-neon px-2 py-0.5">✨ <?= e(t('form.auto')) ?></span>
+          <span id="autoCatBadge" class="hidden text-[11px] rounded-full bg-neon/15 text-neon px-2 py-0.5 inline-flex items-center gap-1"><?= icon('sparkles', 'w-3 h-3') ?><?= e(t('form.auto')) ?></span>
         </label>
         <select id="catSelect" name="category"
                 class="w-full rounded-xl bg-pitch-900/60 border border-white/10 px-4 py-2.5 outline-none focus:border-neon transition">
           <?php foreach ($categories as $c): ?>
-            <option value="<?= e($c) ?>" <?= ($_POST['category'] ?? '') === $c ? 'selected' : '' ?>><?= e(category_icon($c)) ?> <?= e(category_label($c)) ?></option>
+            <option value="<?= e($c) ?>" <?= ($_POST['category'] ?? '') === $c ? 'selected' : '' ?>><?= e(category_label($c)) ?></option>
           <?php endforeach; ?>
         </select>
       </div>
@@ -42,7 +42,7 @@ $val = fn(string $k, $d = '') => e($_POST[$k] ?? $d);
       </div>
     </div>
 
-    <!-- ==================== 🇷🇺 РУССКАЯ ВЕРСИЯ ==================== -->
+    <!-- ==================== РУССКАЯ ВЕРСИЯ ==================== -->
     <fieldset class="rounded-2xl border border-white/10 p-5 space-y-4">
       <legend class="px-2 text-sm font-bold text-neon"><?= e(t('form.ru_section')) ?></legend>
 
@@ -63,7 +63,7 @@ $val = fn(string $k, $d = '') => e($_POST[$k] ?? $d);
       </div>
     </fieldset>
 
-    <!-- ==================== 🇬🇧 ENGLISH VERSION ==================== -->
+    <!-- ==================== ENGLISH VERSION ==================== -->
     <fieldset class="rounded-2xl border border-white/10 p-5 space-y-4">
       <legend class="px-2 text-sm font-bold text-neon"><?= e(t('form.en_section')) ?></legend>
 
@@ -87,14 +87,14 @@ $val = fn(string $k, $d = '') => e($_POST[$k] ?? $d);
 
     <div class="flex flex-wrap gap-3 pt-1">
       <button type="submit" name="action" value="draft"
-              class="rounded-xl bg-white/5 hover:bg-white/10 px-5 py-2.5 font-semibold transition"><?= e(t('form.save_draft')) ?></button>
+              class="inline-flex items-center gap-2 rounded-xl bg-white/5 hover:bg-white/10 px-5 py-2.5 font-semibold transition"><?= icon('save', 'w-4 h-4') ?><?= e(t('form.save_draft')) ?></button>
 
       <button type="submit" name="action" value="pending"
-              class="rounded-xl bg-amber-400/90 text-pitch-900 hover:bg-amber-300 px-5 py-2.5 font-semibold transition"><?= e(t('form.send_review')) ?></button>
+              class="inline-flex items-center gap-2 rounded-xl bg-amber-400/90 text-pitch-900 hover:bg-amber-300 px-5 py-2.5 font-semibold transition"><?= icon('send', 'w-4 h-4') ?><?= e(t('form.send_review')) ?></button>
 
       <?php if (has_role('admin','owner')): ?>
         <button type="submit" name="action" value="publish"
-                class="rounded-xl bg-neon text-pitch-900 hover:bg-neon-400 px-5 py-2.5 font-semibold shadow-glow transition"><?= e(t('form.publish_now')) ?></button>
+                class="inline-flex items-center gap-2 rounded-xl bg-neon text-pitch-900 hover:bg-neon-400 px-5 py-2.5 font-semibold shadow-glow transition"><?= icon('zap', 'w-4 h-4') ?><?= e(t('form.publish_now')) ?></button>
       <?php endif; ?>
     </div>
   </form>

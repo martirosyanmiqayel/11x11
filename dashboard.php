@@ -39,7 +39,7 @@ require __DIR__ . '/includes/header.php';
 
 <div class="flex items-center justify-between flex-wrap gap-4 mb-8">
   <div>
-    <h1 class="text-3xl font-extrabold"><?= e(t('dash.hi')) ?><span class="text-neon"><?= e(current_user()['name']) ?></span> 👋</h1>
+    <h1 class="text-3xl font-extrabold"><?= e(t('dash.hi')) ?><span class="text-neon"><?= e(current_user()['name']) ?></span></h1>
     <p class="text-slate-400 mt-1"><?= e(t('dash.role_is')) ?> <b class="text-slate-200"><?= e(role_label($role)) ?></b></p>
   </div>
   <a href="<?= base_url('posts/create.php') ?>"
@@ -59,14 +59,14 @@ require __DIR__ . '/includes/header.php';
 <!-- Быстрые действия под роль -->
 <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
   <a href="<?= base_url('posts/my_posts.php') ?>" class="glass glass-hover rounded-2xl p-6 transition">
-    <div class="text-3xl mb-3">📝</div>
+    <div class="mb-3 text-neon"><?= icon('doc', 'w-7 h-7') ?></div>
     <h3 class="font-bold text-lg"><?= e(t('dash.card_myposts')) ?></h3>
     <p class="text-sm text-slate-400 mt-1"><?= e(t('dash.card_myposts_d')) ?></p>
   </a>
 
   <?php if (has_role('admin','owner')): ?>
     <a href="<?= base_url('admin/moderation.php') ?>" class="glass glass-hover rounded-2xl p-6 transition">
-      <div class="text-3xl mb-3">🛡️</div>
+      <div class="mb-3 text-amber-300"><?= icon('shield', 'w-7 h-7') ?></div>
       <h3 class="font-bold text-lg text-amber-300"><?= e(t('dash.card_mod')) ?></h3>
       <p class="text-sm text-slate-400 mt-1"><?= e(t('dash.card_mod_d')) ?></p>
     </a>
@@ -74,19 +74,19 @@ require __DIR__ . '/includes/header.php';
 
   <?php if (has_role('owner')): ?>
     <a href="<?= base_url('admin/categories.php') ?>" class="glass glass-hover rounded-2xl p-6 transition">
-      <div class="text-3xl mb-3">🏷️</div>
+      <div class="mb-3 text-neon"><?= icon('tag', 'w-7 h-7') ?></div>
       <h3 class="font-bold text-lg"><?= e(t('nav.categories')) ?></h3>
       <p class="text-sm text-slate-400 mt-1"><?= e(t('cats.sub')) ?></p>
     </a>
     <a href="<?= base_url('admin/users.php') ?>" class="glass glass-hover rounded-2xl p-6 transition">
-      <div class="text-3xl mb-3">👑</div>
+      <div class="mb-3 text-neon"><?= icon('users', 'w-7 h-7') ?></div>
       <h3 class="font-bold text-lg text-neon"><?= e(t('dash.card_access')) ?></h3>
       <p class="text-sm text-slate-400 mt-1"><?= e(t('dash.card_access_d')) ?></p>
     </a>
   <?php endif; ?>
 
   <a href="<?= base_url('transfers.php') ?>" class="glass glass-hover rounded-2xl p-6 transition">
-    <div class="text-3xl mb-3">🔁</div>
+    <div class="mb-3 text-neon"><?= icon('swap', 'w-7 h-7') ?></div>
     <h3 class="font-bold text-lg"><?= e(t('dash.card_tr')) ?></h3>
     <p class="text-sm text-slate-400 mt-1"><?= e(t('dash.card_tr_d')) ?></p>
   </a>
