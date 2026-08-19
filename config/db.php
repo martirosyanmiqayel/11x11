@@ -113,12 +113,15 @@ function run_sql_file(PDO $pdo, string $file): void
     if (!is_readable($file)) return;
     $sql = file_get_contents($file);
 
-    // Разбиваем по ';' в конце строки (в схеме нет ';' внутри значений)
-    foreach (preg_split('/;\s*[\r\n]/', $sql) as $stmt) {
+    // Убираем строки-комментарии (иначе они «съедают» следующий за ними CREATE TABLE)
+    $sql = preg_replace('/^\s*--.*$/m', '', $sql);
+
+    // В схеме нет ';' внутри значений — безопасно делим по ';'
+    foreach (explode(';', $sql) as $stmt) {
         $stmt = trim($stmt);
-        if ($stmt === '' || str_starts_with($stmt, '--')) continue;
+        if ($stmt === '') continue;
         if (preg_match('/^\s*(CREATE\s+DATABASE|USE)\b/i', $stmt)) continue;
-        try { $pdo->exec($stmt); } catch (PDOException $e) { /* пропускаем безобидные */ }
+        try { $pdo->exec($stmt); } catch (PDOException $e) { /* IF NOT EXISTS и т.п. */ }
     }
 }
 
